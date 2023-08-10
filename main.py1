@@ -1,0 +1,47 @@
+from PyQt5.QtWidgets import *
+
+app = QApplication([])
+
+window = QWidget()
+question = QLabel("Скільки в середньому набирається підписників за одне відео на каналі тікток?")
+ans1 = QRadioButton("8")
+ans2 = QRadioButton("9")
+ans3 = QRadioButton("7")
+ans4 = QRadioButton("4")
+
+window.resize(250, 250)
+mainLine = QVBoxLayout()
+horiz = QHBoxLayout()
+horiz1 = QHBoxLayout()
+
+mainLine.addWidget(question)
+
+
+horiz.addWidget(ans1)
+horiz.addWidget(ans2)
+
+horiz1.addWidget(ans3)
+horiz1.addWidget(ans4)
+
+mainLine.addLayout(horiz)
+mainLine.addLayout(horiz1)
+
+def showwin():
+ truewin = QMessageBox()
+ truewin.setText("Вірно!\nВи виграли гіроскутер!")
+ truewin.exec()
+
+def showlose():
+ losing = QMessageBox()
+ losing.setText("Неправда!\nВи не виграли приз.")
+ losing.exec()
+
+ans3.clicked.connect(showwin)
+ans1.clicked.connect(showlose)
+ans2.clicked.connect(showlose)
+ans4.clicked.connect(showlose)
+
+window.setLayout(mainLine)
+
+window.show()
+app.exec()
